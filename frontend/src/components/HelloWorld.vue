@@ -1,16 +1,52 @@
-<script setup>
+<script>
 import { ref } from "vue";
+import axios from "axios";
 
-defineProps({
-  msg: String,
-});
+export default {
+  setup() {
+    const count = ref(0);
+    const posts = ref([]);
 
-const count = ref(0);
+    const post = () => {
+      axios
+        .post(`http://localhost:8000/paper/`, {
+          title: "test",
+          author: "die Tobis",
+          journal: "WICHTIG Daily",
+          date: "2022",
+          pages: "200-300",
+        })
+        .then((response) => {})
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    };
+
+    // expose to template and other options API hooks
+    return {
+      posts,
+      count,
+      post,
+    };
+  },
+
+  mounted() {
+    axios
+      .get(`http://localhost:8000/paper/`)
+      .then((response) => {
+        // JSON responses are automatically parsed.
+        console.log(response.data);
+        this.posts = response.data;
+      })
+      .catch((e) => {
+        this.errors.push(e);
+      });
+  },
+};
 </script>
 
 <template>
   <div>
-    <h1>{{ msg }}</h1>
     <p>
       Recommended IDE setup:
       <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
@@ -24,8 +60,11 @@ const count = ref(0);
       |
       <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
     </p>
+    <v-btn @click="post">POST</v-btn>
+    <p v-for="post in posts" :key="post.id">
+      {{ post.title }}
+    </p>
 
-    <button type="button" @click="count++">count is: {{ count }}</button>
     <p>
       Edit
       <code>components/HelloWorld.vue</code> to test hot module replacement.
