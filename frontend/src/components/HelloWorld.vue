@@ -1,30 +1,57 @@
 <script>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
+import { useQuasar } from "quasar";
 
 export default {
   setup() {
+    const $q = useQuasar();
     const count = ref(0);
     const posts = ref([]);
+    const title = ref(null);
+    const author = ref(null);
+    const journal = ref(null);
+    const date = ref(null);
+    const pages = ref(null);
 
-    const post = () => {
+    const fetchData = () => {
       axios
-        .post(`http://localhost:8000/paper/`, {
-          title: "test",
-          author: "die Tobis",
-          journal: "WICHTIG Daily",
-          date: "2022",
-          pages: "200-300",
+        .get(`http://localhost:8000/paper/`)
+        .then((response) => {
+          // JSON responses are automatically parsed.
+          console.log(response.data);
+          posts.value = response.data;
         })
-        .then((response) => {})
         .catch((e) => {
           this.errors.push(e);
         });
     };
 
-    const removePost = (postId) => {
+    onMounted(() => {
+      fetchData();
+    });
+
+    const post = () => {
+      axios
+        .post(`http://localhost:8000/paper/`, {
+          title: title.value,
+          author: author.value,
+          journal: journal.value,
+          date: date.value,
+          pages: pages.value,
+        })
+        .then((response) => {
+          fetchData();
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    };
+
+    const removePost = (index, postId) => {
       console.log(postId);
-      posts.value.splice(postId, 1);
+      posts.value.splice(index, 1);
+      console.log(posts.value);
       axios.delete("http://localhost:8000/paper/" + postId).then((response) => {
         console.log(response);
       });
@@ -36,43 +63,30 @@ export default {
       count,
       post,
       removePost,
+      title,
+      author,
+      journal,
+      date,
+      pages,
     };
-  },
-
-  mounted() {
-    axios
-      .get(`http://localhost:8000/paper/`)
-      .then((response) => {
-        // JSON responses are automatically parsed.
-        console.log(response.data);
-        this.posts = response.data;
-      })
-      .catch((e) => {
-        this.errors.push(e);
-      });
   },
 };
 </script>
 
 <template>
   <div>
-    <p>
-      Recommended IDE setup:
-      <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
-      +
-      <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    </p>
-    <p>
-      <a href="https://vitejs.dev/guide/features.html" target="_blank">
-        Vite Documentation
-      </a>
-      |
-      <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-    </p>
-    <button @click="post">POST</button>
-    <div v-for="post in posts" :key="post.id">
+    <q-form @submit="post">
+      <q-input v-model="title" label="Title"></q-input>
+      <q-input v-model="author" label="Author"></q-input>
+      <q-input v-model="journal" label="Journal"></q-input>
+      <q-input v-model="date" label="Date"></q-input>
+      <q-input v-model="pages" label="Pages "></q-input>
+      <q-btn label="Submit" type="submit" color="primary"></q-btn>
+    </q-form>
+    <!--/* <button @click="post">POST</button> */ -->
+    <div v-for="(post, index) in posts" :key="post.id">
       {{ post.id }}: {{ post.title }}
-      <button color="blue" @click="removePost(post.id)">delete</button>
+      <button color="blue" @click="removePost(index, post.id)">delete</button>
     </div>
 
     <p>
