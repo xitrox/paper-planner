@@ -22,11 +22,20 @@ export default {
         });
     };
 
+    const removePost = (postId) => {
+      console.log(postId);
+      posts.value.splice(postId, 1);
+      axios.delete("http://localhost:8000/paper/" + postId).then((response) => {
+        console.log(response);
+      });
+    };
+
     // expose to template and other options API hooks
     return {
       posts,
       count,
       post,
+      removePost,
     };
   },
 
@@ -60,10 +69,11 @@ export default {
       |
       <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
     </p>
-    <v-btn @click="post">POST</v-btn>
-    <p v-for="post in posts" :key="post.id">
-      {{ post.title }}
-    </p>
+    <button @click="post">POST</button>
+    <div v-for="post in posts" :key="post.id">
+      {{ post.id }}: {{ post.title }}
+      <button color="blue" @click="removePost(post.id)">delete</button>
+    </div>
 
     <p>
       Edit

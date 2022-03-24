@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-i1s=vid7=!v$mq#u*7avpyz2m$5ka!=0jzdg7nu%=_q$&(fm0@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS=['*']
 
 
 # Application definition
@@ -140,10 +140,13 @@ CORS_ALLOW_METHODS = (
 )
 
 CORS_ALLOW_HEADERS = (
-    'x-requested-with',
-    'content-type',
-    'accept',
-    'origin',
-    'authorization',
-    'x-csrftoken'
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
 )
