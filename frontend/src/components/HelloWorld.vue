@@ -14,6 +14,10 @@ export default {
     const date = ref(null);
     const pages = ref(null);
 
+    const days = ["1", "2", "3", "4", "5", "6", "7"];
+    const daysPerWeek = ref(null);
+    const hoursPerDay = ref(0);
+
     const fetchData = () => {
       axios
         .get(`http://localhost:8000/paper/`)
@@ -68,21 +72,34 @@ export default {
       journal,
       date,
       pages,
+      days,
+      daysPerWeek,
+      hoursPerDay,
     };
   },
 };
 </script>
 
 <template>
-  <div>
-    <q-form @submit="post">
-      <q-input v-model="title" label="Title"></q-input>
-      <q-input v-model="author" label="Author"></q-input>
-      <q-input v-model="journal" label="Journal"></q-input>
-      <q-input v-model="date" label="Date"></q-input>
-      <q-input v-model="pages" label="Pages "></q-input>
-      <q-btn label="Submit" type="submit" color="primary"></q-btn>
-    </q-form>
+  
+      <label>Days per week</label>
+      <q-select
+        :options="days"
+        v-model="daysPerWeek"
+        :model-value="daysPerWeek"
+        label="Days per week"
+      ></q-select>
+      <br />
+      <label>Hours per day</label>
+      <q-slider
+        class="q-mt-lg"
+        :max="8"
+        marker-labels
+        label-always
+        v-model="hoursPerDay"
+        >Test</q-slider
+      >
+    </div>
     <!--/* <button @click="post">POST</button> */ -->
     <div v-for="(post, index) in posts" :key="post.id">
       {{ post.id }}: {{ post.title }}
