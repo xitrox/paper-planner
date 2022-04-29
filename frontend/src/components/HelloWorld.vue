@@ -81,26 +81,39 @@ export default {
 </script>
 
 <template>
-  
-      <label>Days per week</label>
-      <q-select
-        :options="days"
-        v-model="daysPerWeek"
-        :model-value="daysPerWeek"
-        label="Days per week"
-      ></q-select>
-      <br />
-      <label>Hours per day</label>
-      <q-slider
-        class="q-mt-lg"
-        :max="8"
-        marker-labels
-        label-always
-        v-model="hoursPerDay"
-        >Test</q-slider
-      >
-    </div>
-    <!--/* <button @click="post">POST</button> */ -->
+  <div>
+    <label>Days per week</label>
+    <q-select
+      :options="days"
+      v-model="daysPerWeek"
+      :model-value="daysPerWeek"
+      label="Days per week"
+    ></q-select>
+    <br />
+    <label>Hours per day</label>
+    <q-slider
+      class="q-mt-lg"
+      :max="8"
+      marker-labels
+      label-always
+      v-model="hoursPerDay"
+      >Test</q-slider
+    >
+
+    <!-- <button @click="post">POST</button> -->
+
+    <q-form @submit="post" class="q-gutter-md">
+      <q-input filled v-model="title" label="Paper Title" />
+      <q-input filled v-model="author" label="author" />
+      <q-input filled v-model="journal" label="journal" />
+      <q-input filled v-model="date" label="date" />
+      <q-input filled v-model="pages" label="pages" />
+
+      <div>
+        <q-btn label="Submit" type="submit" color="primary" />
+      </div>
+    </q-form>
+
     <div v-for="(post, index) in posts" :key="post.id">
       {{ post.id }}: {{ post.title }}
       <button color="blue" @click="removePost(index, post.id)">delete</button>
