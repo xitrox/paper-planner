@@ -46,6 +46,11 @@ export default {
         })
         .then((response) => {
           fetchData();
+          title.value = "";
+          author.value = "";
+          journal.value = "";
+          date.value = "";
+          pages.value = "";
         })
         .catch((e) => {
           this.errors.push(e);
@@ -118,11 +123,6 @@ export default {
       {{ post.id }}: {{ post.title }}
       <button color="blue" @click="removePost(index, post.id)">delete</button>
     </div>
-
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test hot module replacement.
-    </p>
   </div>
 </template>
 
