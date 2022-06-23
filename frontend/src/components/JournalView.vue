@@ -105,8 +105,6 @@ export default {
       >Test</q-slider
     >
 
-    <!-- <button @click="post">POST</button> -->
-
     <q-form @submit="post" class="q-gutter-md">
       <q-input filled v-model="title" label="Paper Title" />
       <q-input filled v-model="author" label="author" />
@@ -119,10 +117,6 @@ export default {
       </div>
     </q-form>
 
-    <div v-for="(post, index) in posts" :key="post.id">
-      {{ post.id }}: {{ post.title }}
-      <button color="blue" @click="removePost(index, post.id)">delete</button>
-    </div>
   </div>
 </template>
 

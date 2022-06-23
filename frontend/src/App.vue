@@ -1,26 +1,60 @@
 <template>
-  <div>Toller header</div>
+  <q-layout view="hHh lpR fFf">
 
-  <div class="q-pa-md">
-    <div class="q-gutter-y-md" style="max-width: 600px">
-      <q-tabs v-model="tab" class="text-teal">
+    <q-header elevated class="bg-primary text-white" height-hint="98">
+      <q-toolbar>
+
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          Title
+        </q-toolbar-title>
+      </q-toolbar>
+
+      <q-tabs align="left">
         <q-route-tab name="mails" icon="mail" label="Mails" to="/" />
-        <q-route-tab name="alarms" icon="alarm" label="Alarms" to="/about" />
-        <q-tab name="movies" icon="movie" label="Movies" />
+        <q-route-tab name="literature" icon="book" label="Literature" to="/literature" />
+        <q-route-tab name="alarms" icon="info" label="About" to="/about" />
       </q-tabs>
-    </div>
-  </div>
+    </q-header>
 
-  <router-link to="/">Main</router-link><br />
-  <router-view></router-view>
+    <q-page-container>
+      <q-page class="q-pa-xl">
+        <router-view />
+      </q-page>
+
+    </q-page-container>
+
+    <q-footer elevated class="bg-grey-8 text-white">
+      <q-toolbar>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
+          <div>Title</div>
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+
+  </q-layout>
 </template>
 
-<script setup>
-import { ref } from "vue";
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-const tab = ref("movies");
+
+<script>
+import { ref } from 'vue'
+
+export default {
+  setup() {
+
+    return {
+    }
+  }
+}
 </script>
+
+
+
 
 <style>
 #app {
