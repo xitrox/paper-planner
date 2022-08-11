@@ -12,7 +12,8 @@ export default {
     const columns = [
       { name: 'title', label: 'Title', field: 'title' },
       { name: 'author', label: 'Author', field: 'author' },
-      { name: 'pages', label: 'Pages', field: 'pages' }
+      { name: 'pages', label: 'Pages', field: 'pages' },
+      { name: 'delete', field: 'delete', label: 'Action' }
 
     ];
 
@@ -38,12 +39,11 @@ export default {
       fetchData();
     });
 
-    const removePost = (index, postId) => {
+    const removePost = (postId) => {
       console.log(postId);
-      posts.value.splice(index, 1);
-      console.log(posts.value);
       axios.delete("http://localhost:8000/paper/" + postId).then((response) => {
         console.log(response);
+        fetchData();
       });
     };
 
@@ -60,17 +60,29 @@ export default {
 </script>
 
 <template>
-  <q-table v-if="!loading" title="Journals" :rows="posts" :columns="columns" row-key="name" />
-  <div>
-    <div v-for="(post, index) in posts" :key="post.id">
-      {{ post.id }}: {{ post.title }}
-      <button color="blue" @click="removePost(index, post.id)">delete</button>
-    </div>
-  </div>
+  <q-table v-if="!loading" title="Journals" :rows="posts" :columns="columns" :pagination="{ rowsPerPage: 10 }"
+    row-key="name">
+    <template v-slot:body="props">
+      <q-tr :props="props">
+        <q-td key="title" :props="props">
+          {{ props.row.title }}
+        </q-td>
+        <q-td key="author" :props="props">
+          {{ props.row.author }}
+        </q-td>
+        <q-td key="pages" :props="props">
+          {{ props.row.pages }}
+        </q-td>
+        <q-td key="delete" :props="props">
+          <q-icon size="md" name="delete" @click="removePost(props.row.id)" />
+        </q-td>
+      </q-tr>
+    </template>
+  </q-table>
 </template>
 
-<style scoped>
-a {
-  color: #42b983;
-}
-</style>
+    <style scoped>
+    a {
+      color: #42b983;
+    }
+    </style>

@@ -35,6 +35,10 @@ export default {
       fetchData();
     });
 
+    const showNotification = (message) => {
+      $q.notify({ message: message, icon: "fact_check" })
+    }
+
     const post = () => {
       axios
         .post(`http://localhost:8000/paper/`, {
@@ -53,17 +57,9 @@ export default {
           pages.value = "";
         })
         .catch((e) => {
+          console.log(e);
           this.errors.push(e);
         });
-    };
-
-    const removePost = (index, postId) => {
-      console.log(postId);
-      posts.value.splice(index, 1);
-      console.log(posts.value);
-      axios.delete("http://localhost:8000/paper/" + postId).then((response) => {
-        console.log(response);
-      });
     };
 
     // expose to template and other options API hooks
@@ -71,7 +67,6 @@ export default {
       posts,
       count,
       post,
-      removePost,
       title,
       author,
       journal,
@@ -88,22 +83,10 @@ export default {
 <template>
   <div>
     <label>Days per week</label>
-    <q-select
-      :options="days"
-      v-model="daysPerWeek"
-      :model-value="daysPerWeek"
-      label="Days per week"
-    ></q-select>
+    <q-select :options="days" v-model="daysPerWeek" :model-value="daysPerWeek" label="Days per week"></q-select>
     <br />
     <label>Hours per day</label>
-    <q-slider
-      class="q-mt-lg"
-      :max="8"
-      marker-labels
-      label-always
-      v-model="hoursPerDay"
-      >Test</q-slider
-    >
+    <q-slider class="q-mt-lg" :max="8" marker-labels label-always v-model="hoursPerDay">Test</q-slider>
 
     <q-form @submit="post" class="q-gutter-md">
       <q-input filled v-model="title" label="Paper Title" />
@@ -113,7 +96,7 @@ export default {
       <q-input filled v-model="pages" label="pages" />
 
       <div>
-        <q-btn label="Submit" type="submit" color="primary" />
+        <q-btn label="Add to Journal" type="submit" color="primary" />
       </div>
     </q-form>
 
