@@ -10,10 +10,9 @@ export default {
     const posts = ref([]);
     const loading = ref(true);
     const columns = [
-      { name: 'title', label: 'Title', field: 'title' },
-      { name: 'author', label: 'Author', field: 'author' },
-      { name: 'pages', label: 'Pages', field: 'pages' }
-
+      { name: "title", label: "Title", field: "title" },
+      { name: "author", label: "Author", field: "author" },
+      { name: "pages", label: "Pages", field: "pages" },
     ];
 
     const days = ["1", "2", "3", "4", "5", "6", "7"];
@@ -60,13 +59,20 @@ export default {
 </script>
 
 <template>
-  <q-table v-if="!loading" title="Journals" :rows="posts" :columns="columns" row-key="name" />
-  <div>
+  <q-table
+    v-if="!loading"
+    title="Journals"
+    :rows="posts"
+    :columns="columns"
+    row-key="name"
+  />
+  <!-- <div>
     <div v-for="(post, index) in posts" :key="post.id">
       {{ post.id }}: {{ post.title }}
       <button color="blue" @click="removePost(index, post.id)">delete</button>
+      <h1>Hallo Hallo test</h1>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <style scoped>
