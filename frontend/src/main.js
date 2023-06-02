@@ -26,10 +26,27 @@ const router = createRouter({
 
 
 const myApp = createApp(App)
+
+
 myApp.use(Quasar, {
     plugins: {
         Notify
     }, // import Quasar plugins and add here
+    config: {
+        brand: {
+            primary: '#b219d1',
+            secondary: '#26A69A',
+            accent: '#9C27B0',
+
+            dark: '#1d1d1d',
+            'dark-page': '#121212',
+
+            positive: '#21BA45',
+            negative: '#C10015',
+            info: '#31CCEC',
+            warning: '#F2C037'
+        }
+    },
 })
 
 myApp.use(router)

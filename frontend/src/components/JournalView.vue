@@ -2,9 +2,16 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import { useQuasar } from "quasar";
+import LiteratureView from "./LiteratureView.vue";
+
 
 export default {
+
+  components: {
+    LiteratureView,
+  },
   setup() {
+
     const $q = useQuasar();
     const count = ref(0);
     const posts = ref([]);
@@ -20,7 +27,7 @@ export default {
 
     const fetchData = () => {
       axios
-        .get(`http://localhost:8000/paper/`)
+        .get(`http://localhost:8000/bibliography/paper/`)
         .then((response) => {
           // JSON responses are automatically parsed.
           console.log(response.data);
@@ -41,7 +48,7 @@ export default {
 
     const post = () => {
       axios
-        .post(`http://localhost:8000/paper/`, {
+        .post(`http://localhost:8000/bibliography/paper/`, {
           title: title.value,
           author: author.value,
           journal: journal.value,
@@ -100,11 +107,17 @@ export default {
       </div>
     </q-form>
 
+    <div>
+
+      <LiteratureView></LiteratureView>
+    </div>
+
+
   </div>
 </template>
 
 <style scoped>
 a {
-  color: #42b983;
+  color: #ae2a2a;
 }
 </style>

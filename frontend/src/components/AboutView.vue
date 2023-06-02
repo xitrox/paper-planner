@@ -12,5 +12,10 @@ export default {
 };
 </script>
 
-<template>Authors: Die Tobis</template>
+<template>
+  <div>
+
+    <h1>Authors: Die Tobis</h1>
+  </div>
+</template>
 

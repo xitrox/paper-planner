@@ -17,12 +17,19 @@
       </q-tabs>
     </q-header>
 
-    <router-view />
 
-    <!-- Warum geht das hier nicht:? -->
-    <!-- <q-page-container>
-      <q-page class="q-pa-xl">    <router-view /> </q-page>
+    <div class="row">
+      <div class="col-3">1</div>
+      <div class="col"> <router-view /></div>
+      <div class="col-3">1</div>
+    </div>
+
+    <!--     <q-page-container>
+      <router-view />
     </q-page-container> -->
+
+
+
 
     <q-footer elevated class="bg-grey-8 text-white">
       <q-toolbar>

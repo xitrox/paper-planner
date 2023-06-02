@@ -23,7 +23,7 @@ export default {
 
     const fetchData = () => {
       axios
-        .get(`http://localhost:8000/paper/`)
+        .get(`http://localhost:8000/bibliography/paper/`)
         .then((response) => {
           // JSON responses are automatically parsed.
           console.log(response.data);
@@ -41,7 +41,7 @@ export default {
 
     const removePost = (postId) => {
       console.log(postId);
-      axios.delete("http://localhost:8000/paper/" + postId).then((response) => {
+      axios.delete("http://localhost:8000/bibliography/paper/" + postId).then((response) => {
         console.log(response);
         fetchData();
       });
@@ -81,8 +81,8 @@ export default {
   </q-table>
 </template>
 
-    <style scoped>
-    a {
-      color: #42b983;
-    }
-    </style>
+<style scoped>
+a {
+  color: #ea6919;
+}
+</style>
