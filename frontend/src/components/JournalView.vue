@@ -88,7 +88,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="q-px-lg">
     <label>Days per week</label>
     <q-select :options="days" v-model="daysPerWeek" :model-value="daysPerWeek" label="Days per week"></q-select>
     <br />
@@ -107,8 +107,10 @@ export default {
       </div>
     </q-form>
 
-    <div>
 
+    <br>
+
+    <div class="q-px-lg">
       <LiteratureView></LiteratureView>
     </div>
 

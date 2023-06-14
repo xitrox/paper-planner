@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-i1s=vid7=!v$mq#u*7avpyz2m$5ka!=0jzdg7nu%=_q$&(fm0@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS=['*']
+ALLOWED_HOSTS = ['*']
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bibliography',
+    'accounts',
+    'phase_planner',
     'rest_framework',
     'corsheaders',
 ]
@@ -154,3 +156,5 @@ CORS_ALLOW_HEADERS = (
     "x-csrftoken",
     "x-requested-with",
 )
+
+AUTH_USER_MODEL = "accounts.CustomUser"

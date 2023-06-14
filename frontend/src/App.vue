@@ -18,16 +18,18 @@
     </q-header>
 
 
-    <div class="row">
+
+    <q-page-container>
+      <q-page padding>
+        <router-view />
+      </q-page>
+    </q-page-container>
+
+    <!-- <div class="row">
       <div class="col-3">1</div>
       <div class="col"> <router-view /></div>
       <div class="col-3">1</div>
-    </div>
-
-    <!--     <q-page-container>
-      <router-view />
-    </q-page-container> -->
-
+    </div> -->
 
 
 
