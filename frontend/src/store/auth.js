@@ -8,7 +8,6 @@ import axios from 'axios';
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         token: null, // Holds the authentication token
-        user: null,  // Holds the user information
     }),
 
     actions: {
