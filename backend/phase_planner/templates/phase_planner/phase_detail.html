@@ -1,0 +1,37 @@
+{% extends "phase_list.html" %}
+
+{% block content %}
+<h1>{{ phase.phase_name }}</h1>
+{{ phase.phase_description }}
+
+
+<div class="container-md">
+
+    <table class="table table-dark table-striped table-sm">
+        {% for to_do in phase.to_do_set.all %}
+        <tr {% if to_do.to_do_is_done %}style="text-decoration: line-through;" {% endif %}>
+            <td>{{to_do.to_do_name}}</td>
+    
+            <td>
+                
+                {% if to_do.to_do_is_done%}
+                <a href="{% url 'uncross' to_do.id %}"><i class="bi bi-check-circle-fill"></i></a>
+                {%else%}
+                <a href="{% url 'cross_off' to_do.id %}"><i class="bi bi-check-circle"></i></a>
+                {% endif %}
+            
+            </td>
+          
+        </tr>
+        {% endfor %}
+    
+    
+    
+    </table>
+
+
+
+</div>
+
+
+{% endblock %}

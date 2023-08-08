@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 from django.conf import settings
+from django.urls import reverse
 # Create your models here.
 
 # Projekt Model
@@ -30,6 +31,9 @@ class Phase(models.Model):
     def __str__(self):
         return self.phase_name
 
+    def get_absolute_url(self):
+        return reverse('phase-detail', kwargs={'pk': self.pk})
+
 # To Do Model
 
 
@@ -41,9 +45,9 @@ class To_Do(models.Model):
     to_do_description = models.TextField()
     to_do_is_done = models.BooleanField(default=False)
     to_do_phase = models.ForeignKey(
-        Phase, related_name='To_Dos', on_delete=models.CASCADE)
+        Phase, on_delete=models.CASCADE)
     to_do_project = models.ForeignKey(
-        Project, related_name='To_Dos', on_delete=models.CASCADE)
+        Project, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.to_do_name
@@ -58,7 +62,7 @@ class Reward(models.Model):
     reward_picture = models.ImageField(
         null=True, blank=True, upload_to='images/')
     reward_phase = models.ForeignKey(
-        Phase, related_name='rewards', on_delete=models.CASCADE)
+        Phase, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.reward_name

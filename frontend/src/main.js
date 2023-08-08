@@ -1,4 +1,5 @@
 import { createApp } from 'vue/dist/vue.esm-bundler';
+import { createPinia } from 'pinia';
 import { Quasar, Notify } from 'quasar'
 // Import icon libraries
 import '@quasar/extras/material-icons/material-icons.css'
@@ -26,6 +27,7 @@ const router = createRouter({
 
 
 const myApp = createApp(App)
+const pinia = createPinia();
 
 
 myApp.use(Quasar, {
@@ -52,6 +54,7 @@ myApp.use(Quasar, {
 myApp.use(router)
 
 // Assumes you have a <div id="app"></div> in your index.html
+myApp.use(pinia);
 myApp.mount('#app')
 
 

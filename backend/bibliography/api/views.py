@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import PaperSerializer
-from .models import Paper
+from ..models import Paper
 
 # Create your views here.
 from django.http import HttpResponse

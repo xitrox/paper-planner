@@ -12,11 +12,13 @@ class ToDoSerializer(serializers.ModelSerializer):
 
 
 class PhaseSerializer(serializers.ModelSerializer):
+    to_do_set = ToDoSerializer(many=True, read_only=True)
 
     class Meta:
+
         model = Phase
         fields = ['phase_name', 'phase_description',
-                  'phase_reward', 'phase_further_reading']
+                  'phase_further_reading', 'to_do_set']
 
 
 class ProjectSerializer(serializers.ModelSerializer):
