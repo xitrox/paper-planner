@@ -7,6 +7,7 @@ export default {
   setup() {
     const $q = useQuasar();
     const phasesStore = usePhasesStore();
+    const phases = ref([]);
 
     // Use ref to track whether the data has been fetched
     const isDataFetched = ref(false);
@@ -15,13 +16,14 @@ export default {
     onMounted(async () => {
       await phasesStore.fetchPhases();
       console.log(phasesStore.phases)
+      phases.value = phasesStore.phases;
       isDataFetched.value = true; // Update the fetched status
 
     });
 
     // Expose to template and other options API hooks
     return {
-      phases: phasesStore.phases,
+      phases,
       isDataFetched, // Expose the fetched status
     };
   },
@@ -32,17 +34,17 @@ export default {
 
 <template>
   <div>
-    <h3>Authors: Die Tobis und der Kosta</h3>
+    <h1>Authors: Die Tobis</h1>
   </div>
 
   <div>
     <h1>Phases</h1>
-    <ul v-if="phases.length > 0">
+    <ul v-if="isDataFetched">
       <li v-for="phase in phases" :key="phase.phase_name">
         {{ phase.phase_name }}
       </li>
     </ul>
-    <p v-else>No phases available.</p>
+    <p v-else>Loading phases...</p>
   </div>
 </template>
 
