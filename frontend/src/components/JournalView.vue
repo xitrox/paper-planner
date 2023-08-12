@@ -2,13 +2,13 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import { useQuasar } from "quasar";
-import LiteratureView from "./LiteratureView.vue";
+// import LiteratureView from "./LiteratureView.vue";
 
 
 export default {
 
   components: {
-    LiteratureView,
+    // LiteratureView,
   },
   setup() {
 
@@ -110,9 +110,9 @@ export default {
 
     <br>
 
-    <div class="q-px-lg">
+    <!-- <div class="q-px-lg">
       <LiteratureView></LiteratureView>
-    </div>
+    </div> -->
 
 
   </div>
