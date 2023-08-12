@@ -17,5 +17,9 @@ export const usePhasesStore = defineStore('phases', {
                 console.error('Error fetching phases:', error);
             }
         },
+        postToDoDone(toDoId) {
+            axios.patch("http://127.0.0.1:8000/phase-planner/todo/" + toDoId, { "to_do_is_done": true })
+        }
+
     },
 });

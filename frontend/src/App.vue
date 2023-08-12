@@ -13,7 +13,9 @@
       <q-tabs align="left">
         <q-route-tab name="mails" icon="library_add" label="Add Journal" to="/" />
         <q-route-tab name="literature" icon="book" label="Literature" to="/literature" />
-        <q-route-tab name="alarms" icon="info" label="About" to="/about" />
+        <q-route-tab name="einarbeitung" icon="info" label="einarbeitung" to="/einarbeitung" />
+        <q-route-tab name="about" icon="info" label="About" to="/about" />
+
       </q-tabs>
     </q-header>
 

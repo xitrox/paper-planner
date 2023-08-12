@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-i1s=vid7=!v$mq#u*7avpyz2m$5ka!=0jzdg7nu%=_q$&(fm0@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'http://localhost:3000']
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -35,6 +35,7 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'phase_planner',
     'rest_framework',
-    'corsheaders',
+
 ]
 
 MIDDLEWARE = [

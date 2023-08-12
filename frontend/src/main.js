@@ -6,6 +6,7 @@ import '@quasar/extras/material-icons/material-icons.css'
 import JournalView from "./components/JournalView.vue";
 import AboutView from "./components/AboutView.vue";
 import LiteratureView from "./components/LiteratureView.vue";
+import PhaseEinarbeitungView from "./components/PhaseEinarbeitungView.vue";
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Import Quasar css
@@ -18,6 +19,7 @@ const routes = [
     { path: '/about', component: AboutView },
     { path: '/literature', component: LiteratureView },
     { path: '/about', component: AboutView },
+    { path: '/einarbeitung', component: PhaseEinarbeitungView }
 ]
 
 const router = createRouter({

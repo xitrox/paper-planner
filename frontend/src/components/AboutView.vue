@@ -34,14 +34,16 @@ export default {
 
 <template>
   <div>
-    <h1>Authors: Die Tobis</h1>
+    <h3>Authors: Die Tobis und der Costa</h3>
   </div>
 
   <div>
-    <h1>Phases</h1>
+    <h3>Hier ein Test, der die alle geladenen Json Daten darstellt:</h3>
     <ul v-if="isDataFetched">
       <li v-for="phase in phases" :key="phase.phase_name">
-        {{ phase.phase_name }}
+
+        {{ phase }}
+
       </li>
     </ul>
     <p v-else>Loading phases...</p>

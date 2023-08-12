@@ -7,7 +7,7 @@ class ToDoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = To_Do
-        fields = ['to_do_name', 'to_do_description',
+        fields = ['id', 'to_do_name', 'to_do_description',
                   'to_do_is_done', 'to_do_phase', 'to_do_project']
 
 
